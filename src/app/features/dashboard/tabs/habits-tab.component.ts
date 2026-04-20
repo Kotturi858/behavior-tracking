@@ -281,16 +281,23 @@ export class HabitsTabComponent {
       return;
     }
 
-    this.store.addHabit({
+    const habitData: any = {
       name: this.habitDraft.name.trim(),
       description: this.habitDraft.description.trim(),
       recurrence: this.habitDraft.recurrence as any,
       reminderTime: this.habitDraft.reminderTime,
-      tags: this.parseTags(this.habitDraft.tags),
-      weekdays: this.habitDraft.recurrence === 'weekly' ? this.habitDraft.weekdays : undefined,
-      customIntervalDays:
-        this.habitDraft.recurrence === 'custom' ? Number(this.habitDraft.customIntervalDays) || 1 : undefined
-    });
+      tags: this.parseTags(this.habitDraft.tags)
+    };
+
+    if (this.habitDraft.recurrence === 'weekly') {
+      habitData.weekdays = this.habitDraft.weekdays;
+    }
+
+    if (this.habitDraft.recurrence === 'custom') {
+      habitData.customIntervalDays = Number(this.habitDraft.customIntervalDays) || 1;
+    }
+
+    this.store.addHabit(habitData);
 
     this.habitDraft = {
       ...this.habitDraft,

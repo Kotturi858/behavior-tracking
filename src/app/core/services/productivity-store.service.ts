@@ -226,7 +226,7 @@ export class ProductivityStoreService {
     if (userId && !isDemo) {
       // Save to Firebase
       const habitRef = doc(this.firestore, `users/${userId}/habits`, habit.id);
-      setDoc(habitRef, habit);
+      setDoc(habitRef, this.removeUndefinedFields(habit));
     } else {
       // Demo mode - update local signal
       this.habits.update((habits) => [habit, ...habits]);
@@ -244,7 +244,7 @@ export class ProductivityStoreService {
 
     if (userId && !isDemo) {
       const habitRef = doc(this.firestore, `users/${userId}/habits`, habitId);
-      setDoc(habitRef, updatedHabit);
+      setDoc(habitRef, this.removeUndefinedFields(updatedHabit));
     } else {
       this.habits.update((habits) =>
         habits.map((habit) => (habit.id === habitId ? updatedHabit : habit))
@@ -278,7 +278,7 @@ export class ProductivityStoreService {
 
     if (userId && !isDemo) {
       const habitRef = doc(this.firestore, `users/${userId}/habits`, habitId);
-      setDoc(habitRef, updatedHabit);
+      setDoc(habitRef, this.removeUndefinedFields(updatedHabit));
       
       // Also log the completion in a separate collection for analytics
       const completionRef = doc(this.firestore, `users/${userId}/habitLogs`, `${habitId}_${date}`);
@@ -312,7 +312,7 @@ export class ProductivityStoreService {
 
     if (userId && !isDemo) {
       const taskRef = doc(this.firestore, `users/${userId}/tasks`, task.id);
-      setDoc(taskRef, task);
+      setDoc(taskRef, this.removeUndefinedFields(task));
     } else {
       this.tasks.update((tasks) => [task, ...tasks]);
     }
@@ -329,7 +329,7 @@ export class ProductivityStoreService {
 
     if (userId && !isDemo) {
       const taskRef = doc(this.firestore, `users/${userId}/tasks`, taskId);
-      setDoc(taskRef, updatedTask);
+      setDoc(taskRef, this.removeUndefinedFields(updatedTask));
     } else {
       this.tasks.update((tasks) =>
         tasks.map((t) => (t.id === taskId ? updatedTask : t))
@@ -364,7 +364,7 @@ export class ProductivityStoreService {
 
     if (userId && !isDemo) {
       const recordRef = doc(this.firestore, `users/${userId}/moneyRecords`, record.id);
-      setDoc(recordRef, record);
+      setDoc(recordRef, this.removeUndefinedFields(record));
     } else {
       this.moneyRecords.update((records) => [record, ...records]);
     }
@@ -384,7 +384,7 @@ export class ProductivityStoreService {
 
     if (userId && !isDemo) {
       const recordRef = doc(this.firestore, `users/${userId}/moneyRecords`, recordId);
-      setDoc(recordRef, updatedRecord);
+      setDoc(recordRef, this.removeUndefinedFields(updatedRecord));
     } else {
       this.moneyRecords.update((records) =>
         records.map((r) => (r.id === recordId ? updatedRecord : r))
@@ -419,7 +419,7 @@ export class ProductivityStoreService {
 
     if (userId && !isDemo) {
       const reflectionRef = doc(this.firestore, `users/${userId}/reflections`, nextReflection.date);
-      setDoc(reflectionRef, nextReflection);
+      setDoc(reflectionRef, this.removeUndefinedFields(nextReflection));
     } else {
       this.reflections.update((reflections) => {
         const filtered = reflections.filter((reflection) => reflection.date !== this.selectedDate());
@@ -527,6 +527,16 @@ export class ProductivityStoreService {
     }
 
     return 'A fresh restart is available at any point today. Small steps still count fully.';
+  }
+
+  private removeUndefinedFields(obj: any): any {
+    const result: any = {};
+    for (const key in obj) {
+      if (obj[key] !== undefined) {
+        result[key] = obj[key];
+      }
+    }
+    return result;
   }
 
   private recalculateHabit(habit: Habit): Habit {
