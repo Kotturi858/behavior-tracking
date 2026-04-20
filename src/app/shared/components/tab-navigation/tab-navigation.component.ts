@@ -37,6 +37,7 @@ export interface TabItem {
       border: 1px solid var(--border-color);
       overflow-x: auto;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
 
     .tab-navigation::-webkit-scrollbar {
@@ -56,6 +57,9 @@ export interface TabItem {
       cursor: pointer;
       transition: all 0.2s ease;
       white-space: nowrap;
+      min-height: 44px;
+      min-width: 44px;
+      flex-shrink: 0;
     }
 
     .tab-button:hover {
@@ -70,21 +74,25 @@ export interface TabItem {
 
     .tab-icon {
       font-size: 1.1rem;
+      flex-shrink: 0;
     }
 
     .tab-label {
       font-size: 0.9rem;
     }
 
-    @media (max-width: 768px) {
+    /* Mobile-first responsive design */
+    @media (max-width: 640px) {
       .tab-navigation {
         padding: 0.25rem;
         gap: 0.25rem;
+        margin: 0 -0.25rem; /* Allow scroll to edge */
       }
 
       .tab-button {
-        padding: 0.5rem 0.75rem;
+        padding: 0.6rem 0.8rem;
         font-size: 0.85rem;
+        gap: 0.4rem;
       }
 
       .tab-icon {
@@ -92,7 +100,30 @@ export interface TabItem {
       }
 
       .tab-label {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+      }
+
+      /* Hide text on very small screens, show only icons */
+      @media (max-width: 380px) {
+        .tab-label {
+          display: none;
+        }
+
+        .tab-button {
+          padding: 0.6rem;
+          justify-content: center;
+        }
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 768px) {
+      .tab-navigation {
+        padding: 0.4rem;
+        gap: 0.4rem;
+      }
+
+      .tab-button {
+        padding: 0.7rem 0.9rem;
       }
     }
   `

@@ -120,7 +120,13 @@ import { ProductivityStoreService } from '../../../core/services/productivity-st
     }
 
     .compact {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .compact {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
     }
 
     .compact .item-card {
@@ -137,20 +143,33 @@ import { ProductivityStoreService } from '../../../core/services/productivity-st
     }
 
     .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
       margin-bottom: 0.5rem;
     }
 
     .checkbox-row {
       display: flex;
       gap: 0.6rem;
-      align-items: center;
+      align-items: flex-start;
       cursor: pointer;
       flex: 1;
+      min-width: 0; /* Prevent text overflow */
     }
 
     .checkbox-row input[type="checkbox"] {
       width: 1.25rem;
       height: 1.25rem;
+      min-width: 1.25rem;
+      margin-top: 0.125rem;
+      flex-shrink: 0;
+    }
+
+    .checkbox-row strong {
+      word-break: break-word;
+      line-height: 1.3;
     }
 
     .primary-action,
@@ -162,16 +181,25 @@ import { ProductivityStoreService } from '../../../core/services/productivity-st
       color: white;
       cursor: pointer;
       font-weight: 600;
+      min-height: 44px;
+      white-space: nowrap;
     }
 
     .icon-button {
       background: transparent;
       color: var(--heading-text);
       border: 1px solid var(--border-color);
+      min-width: 44px;
+      padding: 0.6rem 0.8rem;
     }
 
     .meta-row {
       color: var(--body-text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .tags-row {
@@ -188,7 +216,52 @@ import { ProductivityStoreService } from '../../../core/services/productivity-st
       font-size: 0.86rem;
     }
 
-    @media (max-width: 1024px) {
+    /* Mobile-first responsive design */
+    @media (max-width: 640px) {
+      .two-column-form {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .item-card {
+        padding: 1.125rem 1rem;
+        gap: 0.625rem;
+      }
+
+      .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .checkbox-row {
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      .checkbox-row input[type="checkbox"] {
+        width: 1.375rem;
+        height: 1.375rem;
+        margin-top: 0.125rem;
+      }
+
+      .meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .icon-button {
+        align-self: flex-end;
+      }
+
+      .tag {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
       .two-column-form {
         grid-template-columns: 1fr;
       }

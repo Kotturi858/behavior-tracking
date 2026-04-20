@@ -22,16 +22,16 @@ import { ThemeService } from '../../../core/services/theme.service';
   `,
   styles: `
     .shell {
-      width: min(1180px, calc(100vw - 2rem));
+      width: min(100%, calc(100vw - 1rem));
       margin: 0 auto;
-      padding: 2rem 0 3rem;
+      padding: 1rem 0.5rem 2rem;
     }
 
     .topbar {
       display: flex;
       justify-content: space-between;
       gap: 1rem;
-      align-items: start;
+      align-items: flex-start;
       margin-bottom: 1.5rem;
     }
 
@@ -46,7 +46,7 @@ import { ThemeService } from '../../../core/services/theme.service';
 
     h1 {
       margin: 0;
-      font-size: clamp(2rem, 4vw, 3.8rem);
+      font-size: clamp(1.5rem, 5vw, 3.8rem);
       line-height: 0.95;
       color: var(--heading-text);
       font-family: "Space Grotesk", "Segoe UI", sans-serif;
@@ -55,8 +55,9 @@ import { ThemeService } from '../../../core/services/theme.service';
     .subtitle {
       margin: 0.8rem 0 0;
       color: var(--body-text);
-      max-width: 48rem;
-      font-size: 1rem;
+      max-width: 100%;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      line-height: 1.4;
     }
 
     .theme-toggle {
@@ -67,11 +68,54 @@ import { ThemeService } from '../../../core/services/theme.service';
       color: var(--surface-text-inverse);
       font-weight: 600;
       cursor: pointer;
+      min-height: 44px;
+      white-space: nowrap;
+      font-size: 0.9rem;
     }
 
-    @media (max-width: 768px) {
+    /* Mobile-first responsive design */
+    @media (max-width: 640px) {
+      .shell {
+        padding: 0.75rem 0.5rem 1.5rem;
+      }
+
       .topbar {
         flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .theme-toggle {
+        align-self: center;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+      }
+
+      h1 {
+        font-size: clamp(1.25rem, 6vw, 2rem);
+      }
+
+      .subtitle {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 768px) {
+      .shell {
+        width: min(100%, calc(100vw - 2rem));
+        padding: 1.5rem 1rem 2.5rem;
+      }
+
+      .topbar {
+        gap: 1.5rem;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .shell {
+        width: min(1180px, calc(100vw - 2rem));
+        padding: 2rem 0 3rem;
       }
     }
   `

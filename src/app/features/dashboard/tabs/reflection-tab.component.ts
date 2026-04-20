@@ -106,6 +106,8 @@ import { ProductivityStoreService } from '../../../core/services/productivity-st
       color: white;
       cursor: pointer;
       font-weight: 600;
+      min-height: 44px;
+      white-space: nowrap;
     }
 
     .item-card {
@@ -118,7 +120,17 @@ import { ProductivityStoreService } from '../../../core/services/productivity-st
     }
 
     .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
       margin-bottom: 0.5rem;
+    }
+
+    .item-header strong {
+      word-break: break-word;
+      flex: 1;
+      min-width: 0;
     }
 
     .pill {
@@ -126,7 +138,12 @@ import { ProductivityStoreService } from '../../../core/services/productivity-st
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 0.78rem;
-      margin: 0 0 0.25rem;
+      margin: 0;
+      padding: 0.25rem 0.6rem;
+      background: var(--input-bg);
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .tags-row {
@@ -143,7 +160,40 @@ import { ProductivityStoreService } from '../../../core/services/productivity-st
       font-size: 0.86rem;
     }
 
-    @media (max-width: 1024px) {
+    /* Mobile-first responsive design */
+    @media (max-width: 640px) {
+      .two-column-form {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .item-card {
+        padding: 1.125rem 1rem;
+        gap: 0.625rem;
+      }
+
+      .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .pill {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.5rem;
+      }
+
+      .tag {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+      }
+
+      textarea {
+        min-height: 120px; /* Better mobile textarea height */
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
       .two-column-form {
         grid-template-columns: 1fr;
       }

@@ -32,8 +32,9 @@ import { Component, input } from '@angular/core';
     }
 
     .value {
-      font-size: clamp(1.4rem, 2vw, 2rem);
+      font-size: clamp(1.2rem, 4vw, 2rem);
       color: var(--heading-text);
+      line-height: 1.1;
     }
 
     .helper {
@@ -48,6 +49,37 @@ import { Component, input } from '@angular/core';
 
     .focus {
       background: linear-gradient(180deg, color-mix(in srgb, var(--accent-primary) 14%, var(--card-bg)), var(--card-bg));
+    }
+
+    /* Mobile-first responsive design */
+    @media (max-width: 640px) {
+      .stat-card {
+        padding: 0.875rem 1rem;
+        border-radius: 1rem;
+        gap: 0.25rem;
+      }
+
+      .label {
+        font-size: 0.75rem;
+      }
+
+      .value {
+        font-size: clamp(1.1rem, 5vw, 1.5rem);
+      }
+
+      .helper {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 768px) {
+      .stat-card {
+        padding: 0.9375rem 1.05rem;
+      }
+
+      .value {
+        font-size: clamp(1.3rem, 3vw, 1.8rem);
+      }
     }
   `
 })
