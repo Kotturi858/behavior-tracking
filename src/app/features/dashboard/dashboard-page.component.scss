@@ -1,0 +1,211 @@
+:host {
+  display: block;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-grid,
+.content-grid,
+.analytics-grid,
+.stats-grid,
+.schema-grid,
+.top-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-grid,
+.analytics-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.content-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.analytics-grid > :last-child {
+  grid-column: 1 / -1;
+}
+
+.panel {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  padding: 1.2rem;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: 1rem;
+}
+
+.panel-header,
+.item-header,
+.meta-row,
+.item-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+.section-kicker,
+.helper-chip,
+.date-picker span,
+.pill {
+  color: var(--muted-text);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  margin: 0 0 0.25rem;
+}
+
+h2,
+h3,
+p {
+  margin: 0;
+  color: var(--heading-text);
+}
+
+h2 {
+  font-size: 1.35rem;
+}
+
+.date-picker,
+label {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.two-column-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+input,
+select,
+textarea {
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  padding: 0.85rem 1rem;
+  background: var(--input-bg);
+  color: var(--heading-text);
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.primary-action,
+.icon-button,
+.weekday-pill,
+.ghost-link {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  background: var(--accent-primary);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.icon-button,
+.ghost-link,
+.weekday-pill {
+  background: transparent;
+  color: var(--heading-text);
+  border: 1px solid var(--border-color);
+}
+
+.weekday-row,
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.weekday-pill.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: white;
+}
+
+.list-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.compact .item-card {
+  padding-block: 0.95rem;
+}
+
+.item-card,
+.note-card {
+  border-radius: 1.2rem;
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  background: color-mix(in srgb, var(--card-bg) 78%, transparent);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.note-card.accent {
+  background: color-mix(in srgb, var(--accent-positive) 10%, var(--card-bg));
+}
+
+.meta-row,
+.item-card p,
+.schema-grid p {
+  color: var(--body-text);
+}
+
+.tag {
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-secondary) 16%, transparent);
+  color: var(--heading-text);
+  font-size: 0.86rem;
+}
+
+.checkbox-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.stack-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (max-width: 1024px) {
+  .hero-grid,
+  .content-grid,
+  .analytics-grid,
+  .stats-grid,
+  .schema-grid,
+  .top-list,
+  .two-column-form {
+    grid-template-columns: 1fr;
+  }
+}

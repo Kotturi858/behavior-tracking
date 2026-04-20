@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+:root {
+  color-scheme: light;
+  --page-bg: #f6f4ee;
+  --page-glow: radial-gradient(circle at top left, rgba(196, 65, 12, 0.12), transparent 30%),
+    radial-gradient(circle at top right, rgba(15, 118, 110, 0.12), transparent 24%);
+  --card-bg: rgba(255, 255, 255, 0.82);
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --border-color: rgba(82, 94, 109, 0.18);
+  --heading-text: #1f2937;
+  --body-text: #425466;
+  --muted-text: #6b7280;
+  --surface-text-inverse: #f8fafc;
+  --accent-primary: #0f766e;
+  --accent-secondary: #f59e0b;
+  --accent-positive: #65a30d;
+  --shadow-soft: 0 18px 60px rgba(19, 32, 55, 0.08);
+  font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+}
+
+body[data-theme='dark'] {
+  color-scheme: dark;
+  --page-bg: #0f172a;
+  --page-glow: radial-gradient(circle at top left, rgba(245, 158, 11, 0.13), transparent 30%),
+    radial-gradient(circle at top right, rgba(13, 148, 136, 0.18), transparent 24%);
+  --card-bg: rgba(15, 23, 42, 0.86);
+  --input-bg: rgba(15, 23, 42, 0.95);
+  --border-color: rgba(148, 163, 184, 0.16);
+  --heading-text: #f8fafc;
+  --body-text: #cbd5e1;
+  --muted-text: #94a3b8;
+  --surface-text-inverse: #0f172a;
+  --shadow-soft: 0 22px 60px rgba(2, 6, 23, 0.38);
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--page-glow), linear-gradient(180deg, var(--page-bg), color-mix(in srgb, var(--page-bg) 88%, black));
+  color: var(--body-text);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

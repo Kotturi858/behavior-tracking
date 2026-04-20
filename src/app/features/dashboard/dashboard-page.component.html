@@ -1,0 +1,31 @@
+<app-shell
+  title="Build momentum with kinder data"
+  [subtitle]="store.dashboardSummary().encouragement"
+>
+  <div class="dashboard-container">
+    <app-tab-navigation [tabs]="tabs" [(activeTab)]="activeTab" />
+    
+    <div class="tab-content">
+      @switch (activeTab()) {
+        @case ('dashboard') {
+          <app-dashboard-tab />
+        }
+        @case ('habits') {
+          <app-habits-tab />
+        }
+        @case ('tasks') {
+          <app-tasks-tab />
+        }
+        @case ('money') {
+          <app-money-tab />
+        }
+        @case ('reflection') {
+          <app-reflection-tab />
+        }
+        @case ('analytics') {
+          <app-analytics-tab />
+        }
+      }
+    </div>
+  </div>
+</app-shell>
