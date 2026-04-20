@@ -123,7 +123,13 @@ import { StatCardComponent } from '../../../shared/components/stat-card/stat-car
     }
 
     .compact {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .compact {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
     }
 
     .compact .item-card {
@@ -144,7 +150,8 @@ import { StatCardComponent } from '../../../shared/components/stat-card/stat-car
     }
 
     .primary-action,
-    .icon-button {
+    .icon-button,
+    .ghost-link {
       border: 0;
       border-radius: 999px;
       padding: 0.7rem 1rem;
@@ -152,25 +159,87 @@ import { StatCardComponent } from '../../../shared/components/stat-card/stat-car
       color: white;
       cursor: pointer;
       font-weight: 600;
+      min-height: 44px; /* iOS touch target minimum */
+      white-space: nowrap;
     }
 
     .icon-button {
       background: transparent;
       color: var(--heading-text);
       border: 1px solid var(--border-color);
-    }
-
-    .meta-row {
-      color: var(--body-text);
+      padding: 0.6rem 0.8rem;
+      min-width: 44px;
     }
 
     .ghost-link {
       background: transparent;
       color: var(--heading-text);
       border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+      padding: 0.5rem 0.8rem;
     }
 
-    @media (max-width: 1024px) {
+    .meta-row {
+      color: var(--body-text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .item-header div {
+      flex: 1;
+      min-width: 0; /* Prevent text overflow */
+    }
+
+    .item-header strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      word-break: break-word;
+    }
+
+    /* Mobile-first responsive improvements */
+    @media (max-width: 640px) {
+      .panel-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .stats-grid.money-stats {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .two-column-form {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .item-card {
+        padding: 1.25rem 1rem;
+      }
+
+      .meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .ghost-link {
+        width: 100%;
+        text-align: center;
+        padding: 0.6rem 1rem;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
       .two-column-form {
         grid-template-columns: 1fr;
       }
